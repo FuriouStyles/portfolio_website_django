@@ -23,12 +23,29 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarToggle">
-        <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{% url 'homepage' %}">Home</a>
-            <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
-            <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
-            <a class="nav-item nav-link" href="{% url 'class-notes' %}">Class Notes</a>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+          <li class='nav-item active'>
+            <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog-home' %}">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'class-notes' %}">Class Notes</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'boxing_landing' %}">Boxing Predictor</a>
+              <a class="dropdown-item" href="#">This Website is a Project</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
           </div>
         </div>
       </div>

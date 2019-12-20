@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', include('blog.urls')),
     path('admin/', admin.site.urls),
-    path('notes/', include('notes.urls'))
-]
+    path('notes/', include('notes.urls')),
+    path('boxing/', include('boxing.urls'))
+] 
