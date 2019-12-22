@@ -86,13 +86,16 @@ def boxing(request):
             prediction = loaded_model.predict_proba(df_encoded)
 
             draw_proba = prediction[0][0]
-            win_proba = prediction[0][1]
-            loss_proba = prediction[0][2]
+            loss_proba = prediction[0][1]
+            win_proba = prediction[0][2]
 
             context= {
             'draw_proba': draw_proba,
             'win_proba': win_proba,
-            'loss_proba': loss_proba
+            'loss_proba': loss_proba,
+            'dataframe': df.values.tolist(),
+            'encoded_df': df_encoded.values.tolist(),
+            'blue': blue
             }
 
             return render(request, 'boxing/prediction_results.html', context)
