@@ -1,7 +1,14 @@
 body {
-  background: #fafafa;
-  color: #333333;
   margin-top: 5rem;
+}
+
+.nav-font {
+  font-family: 'Limelight', cursive;
+}
+
+.jumbotron {
+   background: rgb(69, 69, 69); /* This is for ie8 and below */
+   background: rgba(69, 69, 69, 0.7);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -13,20 +20,25 @@ ul {
 }
 
 .bg-steel {
-  background-color: #5f788a;
+  background-color: #23f4ff;
 }
 
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+.site-header .navbar-nav .nav-link, .dropdown-item {
+  color: #ff2370;
 }
 
-.site-header .navbar-nav .nav-link:hover {
+.site-header .navbar-nav .nav-link:hover{
   color: #ffffff;
 }
 
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+.sidebar-title {
+  color: #ff2370
 }
+
+/* .site-header .navbar-nav .nav-link .active {
+  font-weight: 500;
+  color: #ffffff
+} */
 
 .content-section {
   background: #ffffff;
