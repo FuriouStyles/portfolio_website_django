@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h1>Stephen's Blog</h1>
-  <h2>Posts by {{ view.kwargs.username }}</h2>
+  <h1 class="loud-title">Stephen's Blog</h1>
+  <h2 class="loud-subtitles">Posts by {{ view.kwargs.username }}</h2>
   {% for post in posts %}
     <article class="media content-section">
       <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
