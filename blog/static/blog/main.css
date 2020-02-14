@@ -10,8 +10,7 @@ body {
   font-family: 'Mrs Sheppards', cursive;
   color: #23f4ff;
   text-shadow: 1px 1px #ff2370;
-  font-size: 500%;
-  text-align: center;
+  font-size: 500%
 }
 
 .loud-subtitles {
@@ -46,10 +45,6 @@ ul {
 
 .site-header .navbar-nav .nav-link:hover{
   color: #ffffff;
-}
-
-.sidebar-title {
-  color: #ff2370
 }
 
 /* .site-header .navbar-nav .nav-link .active {
@@ -110,4 +105,12 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+.about-btn {
+  background-color: #23f4ff !important;
+}
+
+.about-btn:hover {
+  background-color: #ff2370 !important;
 }

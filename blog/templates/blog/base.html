@@ -21,7 +21,7 @@
 
 <body style="background-image: url('{% static "blog/miami-skyline-miami-4725638_1920.jpg" %}'); background-repeat: no-repeat; background-attachment: fixed">
   <header class="site-header">
-  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top mb-4">
     <div class="container">
       <a class="navbar-brand mr-4 nav-font" style="color: #ff2370"href="{% url 'homepage' %}">Stephen Plainte</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +87,7 @@
         {% block content %}{% endblock %}
       </div>
       <div class="col-md-2">
-        <ul class="home-social-list">
+        <ul class="home-social-list position-fixed mt-4">
           <li><a href="https://www.facebook.com/theefatherpreneur/"><img src="/static/blog/social-media-icons/FB-miami-pink.png" class="img-fluid"></a></li>
           <li><a href="https://twitter.com/the_3n1gma"><img src="/static/blog/social-media-icons/iconmonstr-twitter-5-240-miami-pink.png" class="img-fluid"></a></li>
           <li><a href="https://www.linkedin.com/in/stephenplainte/"><img src="/static/blog/social-media-icons/iconmonstr-linkedin-5-240-miami-pink.png" class="img-fluid"></a></li>
