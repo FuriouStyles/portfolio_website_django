@@ -44,7 +44,7 @@ def get_boxer_profile(url):
         }
         print(i)
         if check(i, 3) == True:
-            try:
+            # try:
                 boxer_content = requests.get(url, headers=head, timeout=5, proxies=proxies).content
                 boxer = bs(boxer_content, features='lxml')
                 name = boxer.table.h1.text
@@ -55,7 +55,7 @@ def get_boxer_profile(url):
                 br_id = br_id.strip('ID# ')
                 tables = boxer.find_all('table')
                 profile = str(tables)
-                profile_tables =  pd.read_html(profile)
+                profile_tables = pd.read_html(profile)
                 table_one = profile_tables[2]
                 table_two = profile_tables[3]
                 table_one = table_one.drop([0, 1, 2, 5], axis=0).reset_index(drop=True).set_index(0)
@@ -84,10 +84,10 @@ def get_boxer_profile(url):
                 boxer_profile = boxer_profile.append(profile, ignore_index=True)
                 return profile
                 break
-            except Exception as ex:
-                print(f"There was a problem with this profile: {ex}")
         else:
-            pass
+            break
+
+
 
 def clean(df, date):
     born = df['born'].str.split(pat=' / ', expand=True)
