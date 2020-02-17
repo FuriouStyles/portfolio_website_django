@@ -18,7 +18,7 @@ loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
 
 def boxing(request):
     if request.method == 'GET':
-        form = PredictBout(request.GET or None)
+        form = PredictBoutURL(request.GET or None)
         if form.is_valid():
             date = form['date'].value()
             # blue = form['blue_name'].value()
@@ -26,7 +26,7 @@ def boxing(request):
             # red_br_id = form['red_br_id'].value()
             # blue_br_id = form['blue_br_id'].value()
             title_fight = form['title_fight'].value()
-            #gender = form['gender'].value()
+            # gender = form['gender'].value()
             venue = form['venue'].value()
             # red_born = form['red_born'].value()
             # red_debut = form['red_debut'].value()
@@ -61,36 +61,36 @@ def boxing(request):
             blue = dbr.clean(blue, date)
 
             df = pd.DataFrame({
-            'date': date,
-            'blue': blue['name'].iloc[0],
-            'red': red['name'].iloc[0],
-            'red_br_id': int(red['br_id'].iloc[0]),
-            'blue_br_id': blue['br_id'].iloc[0],
-            'title_fight': title_fight,
-            'venue': venue,
-            'red_born': red['born'].dt.strftime(date_format='%Y-%m-%d'),
-            'red_debut': red['debut'].dt.strftime(date_format='%Y-%m-%d'),
-            'red_division': division,
-            'red_height': red['height'].iloc[0],
-            'red_nationality': red['nationality'].iloc[0],
-            'red_reach': red['reach'].iloc[0],
-            'red_stance': red['stance'].iloc[0],
-            'blue_born': blue['born'].dt.strftime(date_format='%Y-%m-%d'),
-            'blue_debut': blue['debut'].dt.strftime(date_format='%Y-%m-%d'),
-            'blue_division': division,
-            'blue_height': blue['height'].iloc[0],
-            'blue_nationality': blue['nationality'].iloc[0],
-            'blue_reach': blue['reach'].iloc[0],
-            'sex': gender,
-            'blue_stance': blue['stance'].iloc[0],
-            'red_age': red['age'].iloc[0],
-            'blue_age': blue['age'].iloc[0],
-            'red_age_at_fight_time': red['age_at_fight_time'].iloc[0],
-            'red_years_active': red['years_active'].iloc[0],
-            'blue_age_at_fight_time': blue['age_at_fight_time'].iloc[0],
-            'blue_years_active': blue['years_active'].iloc[0]
-            },
-            index=[0])
+                'date': date,
+                'blue': blue['name'].iloc[0],
+                'red': red['name'].iloc[0],
+                'red_br_id': int(red['br_id'].iloc[0]),
+                'blue_br_id': blue['br_id'].iloc[0],
+                'title_fight': title_fight,
+                'venue': venue,
+                'red_born': red['born'].dt.strftime(date_format='%Y-%m-%d'),
+                'red_debut': red['debut'].dt.strftime(date_format='%Y-%m-%d'),
+                'red_division': division,
+                'red_height': red['height'].iloc[0],
+                'red_nationality': red['nationality'].iloc[0],
+                'red_reach': red['reach'].iloc[0],
+                'red_stance': red['stance'].iloc[0],
+                'blue_born': blue['born'].dt.strftime(date_format='%Y-%m-%d'),
+                'blue_debut': blue['debut'].dt.strftime(date_format='%Y-%m-%d'),
+                'blue_division': division,
+                'blue_height': blue['height'].iloc[0],
+                'blue_nationality': blue['nationality'].iloc[0],
+                'blue_reach': blue['reach'].iloc[0],
+                'sex': gender,
+                'blue_stance': blue['stance'].iloc[0],
+                'red_age': red['age'].iloc[0],
+                'blue_age': blue['age'].iloc[0],
+                'red_age_at_fight_time': red['age_at_fight_time'].iloc[0],
+                'red_years_active': red['years_active'].iloc[0],
+                'blue_age_at_fight_time': blue['age_at_fight_time'].iloc[0],
+                'blue_years_active': blue['years_active'].iloc[0]
+                },
+                index=[0])
 
             df_encoded = loaded_encoder.transform(df)
 

@@ -36,3 +36,29 @@ class ClassesCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class ClassesUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Notes
+    fields = ['title', 'notes', 'colab', 'youtube', ]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        note = self.get_object()
+        if self.request.user == note.author:
+            return True
+        return False
+
+
+class ClassesDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Notes
+    success_url = '/notes'
+
+    def test_func(self):
+        note = self.get_object()
+        if self.request.user == note.author:
+            return True
+        return False
