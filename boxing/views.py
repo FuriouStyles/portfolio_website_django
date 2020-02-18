@@ -88,7 +88,7 @@ def boxing(request):
                 return render(request, 'boxing/prediction_results.html', context)
             except Exception as ex:
                 form = PredictBout()
-                return redirect('boxing_long_form')
+                return redirect('boxing_long_form.html')
 
     else:
         form = PredictBoutURL()
@@ -100,6 +100,7 @@ def boxing_long_form(request):
     if request.method == 'GET':
         form = PredictBout(request.GET or None)
         if form.is_valid():
+            date = form['date'].value()
             blue = form['blue_name'].value()
             red = form['red_name'].value()
             red_br_id = form['red_br_id'].value()
@@ -135,23 +136,23 @@ def boxing_long_form(request):
                 'blue_br_id': blue_br_id,
                 'title_fight': title_fight,
                 'venue': venue,
-                'red_born': red_born.dt.strftime(date_format='%Y-%m-%d'),
-                'red_debut': red_debut.dt.strftime(date_format='%Y-%m-%d'),
+                'red_born': red_born,
+                'red_debut': red_born,
                 'red_division': division,
                 'red_height': red_height,
                 'red_nationality': red_nationality,
                 'red_reach': red_reach,
                 'red_stance': red_stance,
-                'blue_born': blue['born'].dt.strftime(date_format='%Y-%m-%d'),
-                'blue_debut': blue['debut'].dt.strftime(date_format='%Y-%m-%d'),
+                'blue_born': blue_born,
+                'blue_debut': blue_born,
                 'blue_division': division,
                 'blue_height': blue_height,
                 'blue_nationality': blue_nationality,
                 'blue_reach': blue_reach,
                 'sex': gender,
                 'blue_stance': blue_stance,
-                'red_age': red_age,
-                'blue_age': blue_age,
+                'red_age': int(red_age),
+                'blue_age': int(blue_age),
                 'red_age_at_fight_time': red_age_at_fight_time,
                 'red_years_active': red_years_active,
                 'blue_age_at_fight_time': blue_age_at_fight_time,
@@ -180,3 +181,7 @@ def boxing_long_form(request):
                 }
 
             return render(request, 'boxing/prediction_results.html', context)
+    else:
+        form = PredictBout()
+
+    return render(request, 'boxing/boxing_long_form.html', {'form': form})
