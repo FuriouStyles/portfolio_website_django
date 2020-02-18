@@ -14,6 +14,7 @@ encoder_filename = 'boxing/static/encoder_pipeline (1).sav'
 loaded_model = pickle.load(open(model_filename, 'rb'))
 loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
 
+
 def boxing(request):
     if request.method == 'GET':
         form = PredictBoutURL(request.GET or None)
@@ -28,8 +29,6 @@ def boxing(request):
                 gender = form['gender'].value()
                 red = dbr.get_boxer_profile(red_url)
                 blue = dbr.get_boxer_profile(blue_url)
-                print(red.T)
-                print(blue.T)
                 red = dbr.clean(red, date)
                 blue = dbr.clean(blue, date)
 
@@ -87,8 +86,8 @@ def boxing(request):
 
                 return render(request, 'boxing/prediction_results.html', context)
             except Exception as ex:
-                form = PredictBout()
-                return redirect('boxing_long_form.html')
+                print(ex)
+                return redirect('boxing_long_form')
 
     else:
         form = PredictBoutURL()
