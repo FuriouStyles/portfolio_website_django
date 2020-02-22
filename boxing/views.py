@@ -7,6 +7,7 @@ from xgboost import XGBClassifier
 import pandas as pd
 import category_encoders as ce
 import boxing.django_boxrec as dbr
+from django.contrib import messages
 
 
 model_filename = 'boxing/static/xgboost_boxing_model_2.sav'
@@ -71,20 +72,41 @@ def boxing(request):
 
                 prediction = loaded_model.predict_proba(df_encoded)
 
-                draw_proba = prediction[0][0]
-                loss_proba = prediction[0][1]
-                win_proba = prediction[0][2]
+                draw_proba = prediction[0][0]*100
+                loss_proba = prediction[0][1]*100
+                win_proba = prediction[0][2]*100
+                winner = None
+                loser = None
+
+                if win_proba > loss_proba:
+                    winner = red
+                    loser = blue
+                    print(winner + "in the red corner")
+                elif loss_proba > win_proba:
+                    winner = blue
+                    loser = red
+                    print(winner + "in the blue corner")
+                elif draw_proba > (win_proba + loss_proba):
+                    winner = 'draw'
+                else:
+                    winner = 'close'
 
                 context = {
-                    'draw_proba': draw_proba,
-                    'win_proba': win_proba,
-                    'loss_proba': loss_proba,
-                    'dataframe': df.values.tolist(),
-                    'encoded_df': df_encoded.values.tolist(),
-                    'blue': blue
+                    'draw_proba': "{:.2f}".format(draw_proba),
+                    'win_proba': "{:.2f}".format(win_proba),
+                    'loss_proba': "{:.2f}".format(loss_proba),
+                    'blue': blue,
+                    'red': red,
+                    'date': date,
+                    'venue': venue,
+                    'title_fight': title_fight,
+                    'winner': winner,
+                    'loser': loser
                     }
 
-                return render(request, 'boxing/prediction_results.html', context)
+                return render(request,
+                              'boxing/prediction_results.html',
+                              context)
             except Exception as ex:
                 print(ex)
                 return redirect('boxing_long_form')
@@ -136,14 +158,14 @@ def boxing_long_form(request):
                 'title_fight': title_fight,
                 'venue': venue,
                 'red_born': red_born,
-                'red_debut': red_born,
+                'red_debut': red_debut,
                 'red_division': division,
                 'red_height': red_height,
                 'red_nationality': red_nationality,
                 'red_reach': red_reach,
                 'red_stance': red_stance,
                 'blue_born': blue_born,
-                'blue_debut': blue_born,
+                'blue_debut': blue_debut,
                 'blue_division': division,
                 'blue_height': blue_height,
                 'blue_nationality': blue_nationality,
@@ -161,22 +183,38 @@ def boxing_long_form(request):
 
             df_encoded = loaded_encoder.transform(df)
 
-            print(df.T)
-            print(df_encoded.T)
-
             prediction = loaded_model.predict_proba(df_encoded)
 
-            draw_proba = prediction[0][0]
-            loss_proba = prediction[0][1]
-            win_proba = prediction[0][2]
+            draw_proba = prediction[0][0]*100
+            loss_proba = prediction[0][1]*100
+            win_proba = prediction[0][2]*100
+            winner = None
+            loser = None
+
+            if win_proba > loss_proba:
+                winner = red
+                loser = blue
+                print(winner + "in the red corner")
+            elif loss_proba > win_proba:
+                winner = blue
+                loser = red
+                print(winner + "in the blue corner")
+            elif draw_proba > (win_proba + loss_proba):
+                winner = 'draw'
+            else:
+                winner = 'close'
 
             context = {
-                'draw_proba': draw_proba,
-                'win_proba': win_proba,
-                'loss_proba': loss_proba,
-                'dataframe': df.values.tolist(),
-                'encoded_df': df_encoded.values.tolist(),
-                'blue': blue
+                'draw_proba': "{:.2f}".format(draw_proba),
+                'win_proba': "{:.2f}".format(win_proba),
+                'loss_proba': "{:.2f}".format(loss_proba),
+                'blue': blue,
+                'red': red,
+                'date': date,
+                'venue': venue,
+                'title_fight': title_fight,
+                'winner': winner,
+                'loser': loser
                 }
 
             return render(request, 'boxing/prediction_results.html', context)
