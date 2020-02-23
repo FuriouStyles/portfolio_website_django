@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h1 class="loud-title">Class Notes</h1>
+  <h1 class="loud-title text-center">Class Notes</h1>
   {% for note in notes %}
     <article class="media content-section">
       <img class="rounded-circle article-img" src="{{ note.author.profile.image.url }}">
