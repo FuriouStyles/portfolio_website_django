@@ -20,7 +20,6 @@ random = "*"
 django-crispy-forms = "*"
 django-ckeditor = "*"
 pillow = "*"
-mod-wsgi = "*"
 
 [requires]
 python_version = "3.7"

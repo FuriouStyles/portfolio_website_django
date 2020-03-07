@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <h1 class="loud-title text-center">Stephen's Blog</h1>
+  <h1 class="loud-title">Stephen's Blog</h1>
   <h2 class="loud-subtitles">Posts by {{ view.kwargs.username }}</h2>
   {% for post in posts %}
     <article class="media content-section">

@@ -1,10 +1,9 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-  <h1 class="loud-title text-center">Boxing Match Predictor</h1>
-  <p class="text-center">Use this form to predict which fighter will win! This model was build using data from <a href="www.boxrec.com">BoxRec.com</a> to build an XGBoost model. Currently this model can predict the outcome of a boxing match between any two professional boxers with 73% accuracy.</p>
-  <p class="text-center"><a class="btn about-btn" href="https://medium.com/@stephenplainte/the-sweet-data-science-a260be7bf471">Learn More About This Model</a></p>
-  <p class="text-center"><small class="text-muted">NOTE: This performs a live scrape of Boxrec. If for some reason there is an error during processing you will be redirected to a form that allows you to fill out all of the information. You can find that form <a href="{% url 'boxing_long_form' %}">here</a>.</small></p>
+  <h1>Boxing Match Outcome Predictor</h1>
+  <h3>404 - A more satisfying name does not exist!</h3>
+  <p>I love boxing. The first time I put gloves on I was 13 years old at summer camp. I won in around 20 seconds by TKO and was immediately hooked. As an active amateur boxer considering a professional career in the sport, I want to transform the way I engage with the sweet science by using data science.</p>
   <div class="content-section">
     <form method="GET">
       {% csrf_token %}
