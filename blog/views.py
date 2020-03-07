@@ -82,3 +82,7 @@ def about(request):
 
 def homepage(request):
     return render(request, 'blog/home.html')
+
+
+def my_website(request):
+    return render(request, 'blog/django-website.html')
