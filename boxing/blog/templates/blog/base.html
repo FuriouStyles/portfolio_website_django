@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Limelight|Montserrat+Subrayada|Mrs+Sheppards&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'blog/boxing-gloves-vector.png' %}"/>
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+  {% if title %}
+    <title>Stephen Plainte - {{ title }}</title>
+  {% else %}
+    <title>Stephen Plainte</title>
+  {% endif %}
+</head>
+
+<body style="background-image: url('{% static "blog/miami-skyline-miami-4725638_1920.jpg" %}'); background-repeat: no-repeat; background-attachment: fixed">
+  <header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top mb-4">
+    <div class="container">
+      <a class="navbar-brand mr-4 nav-font" style="color: #ff2370"href="{% url 'homepage' %}">Stephen Plainte</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+          <li class='nav-item'>
+            <a class="nav-link nav-font" href="{% url 'homepage' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'blog-home' %}">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'class-notes' %}">Class Notes</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav-font" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+            <div class="dropdown-menu nav-font" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item nav-font" href="{% url 'boxing_landing' %}">Boxing Predictor</a>
+              <a class="dropdown-item nav-font" href="{% url 'django-website' %}">Django Website</a>
+              <!-- <a class="dropdown-item nav-font" href="#">Projects in Progress</a> -->
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'post-create' %}">New Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'note-create' %}">New Note</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-font" href="{% url 'register' %}">Register</a>
+          {% endif %}
+        </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-10">
+        {% if message %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-2">
+        <ul class="home-social-list position-fixed mt-4">
+          <li><a href="https://www.facebook.com/theefatherpreneur/"><img src="/static/blog/social-media-icons/FB-miami-pink.png" class="img-fluid"></a></li>
+          <li><a href="https://twitter.com/the_3n1gma"><img src="/static/blog/social-media-icons/iconmonstr-twitter-5-240-miami-pink.png" class="img-fluid"></a></li>
+          <li><a href="https://www.linkedin.com/in/stephenplainte/"><img src="/static/blog/social-media-icons/iconmonstr-linkedin-5-240-miami-pink.png" class="img-fluid"></a></li>
+          <li><a href="https://www.instagram.com/the_fatherpreneur/"><img src="/static/blog/social-media-icons/iconmonstr-instagram-15-240-miami-pink.png" class="img-fluid"></a></li>
+          <li><a href="https://medium.com/@stephenplainte"><img src="/static/blog/social-media-icons/iconmonstr-medium-5-240.png" class="img-fluid"></a></li>
+          <li><a href="https://github.com/FuriouStyles"><img src="/static/blog/social-media-icons/iconmonstr-github-5-240-miami-pink.png" class="img-fluid"></a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <!-- Boostrap CDN packages -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

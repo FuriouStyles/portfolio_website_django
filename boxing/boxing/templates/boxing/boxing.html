@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <h1 class="loud-title text-center">Boxing Match Predictor</h1>
+  <p class="text-center">Use this form to predict which fighter will win! This model was build using data from <a href="www.boxrec.com">BoxRec.com</a> to build an XGBoost model. Currently this model can predict the outcome of a boxing match between any two professional boxers with 73% accuracy.</p>
+  <p class="text-center"><a class="btn about-btn" href="https://medium.com/@stephenplainte/the-sweet-data-science-a260be7bf471">Learn More About This Model</a></p>
+  <p class="text-center"><small class="text-muted">NOTE: This performs a live scrape of Boxrec. If for some reason there is an error during processing you will be redirected to a form that allows you to fill out all of the information. You can find that form <a href="{% url 'boxing_long_form' %}">here</a>.</small></p>
+  <div class="content-section">
+    <form method="GET">
+      {% csrf_token %}
+      <fieldset class="form-group row">
+        <legend class="border-bottom mb-4">Make A Fight Prediction</legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group row">
+        <button class="btn btn-outline-info" type="submit" data-toggle="modal" data-target="#mcgregor-modal">Predict</button>
+      </div>
+    </form>
+    <div class="modal fade" id="mcgregor-modal" tabindex="-1" role="dialog" aria-labelledby="mcgregor-modal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Predicting...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Right now I'm making requests to BoxRec. It can take a minute. Here's some footage of Conor McGregor warming up during a public workout before his fight with Floyd Mayweather. When this gets it's own website this will be an ad lol.</p>
+            <img src="/static/mcgregor.gif" class="img-responsive mx-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

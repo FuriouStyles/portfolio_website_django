@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h1 class="loud-title text-center">Django Portfolio Website</h1>
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-content">
+      <h2 class="loud-subtitles">More Than Just a Portfolio Website</h2>
+      <p class="text-justify">Portfolio websites were covered very early in Unit 1 of the program at Lambda School, and I decided then that I wasn't going to go halfway with a portfolio website. I wanted mine to be vibrant, useful, and capable of surviving well beyond my time at Lambda School. The options they gave us to build our websites were Pelican or another static site generator, both of which could have been hosted on Github.io. This is because our program is not a web development program, but data science, and they didn't want to weigh us down with the  unnecessary burden of learning web design as well.</p>
+      <p class="text-justify">In Unit 2 of our program, we had to build a machine learning model and report our findings from it. It was then that I decided to build my portfolio website and host some of my Machine Learning models for potential future employers to see. Currently you can find my Boxing Prediction model <a href="{% url 'boxing_landing' %}">here</a>. But I wanted my website to be more than that, so I built out a blog platform that I can use myself. I took that a step further and built a Class Notes app that allows me to take detailed notes about each class that I take (and have taken), and upload my required resources and lecture videos. Very soon I'm going to add search functinoality to this app to easily find resources when I need them, instead of having to spin up three or four resources at once. If you want to check out the full functinoality of the app, feel free to <a href="{% url 'register' %}">register for a dummy account</a>.</p>
+      <h3 class="loud-subtitles text-center">Tech For This Project</h3>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <ul class="list-unstyled">
+            <li>Django & the Django REST Framework</li>
+            <li>CKEditor & Crispy Forms</li>
+            <li>Bootstrap 4</li>
+            <li>BeautifulSoup, XGBoost, Pandas, and CategoryEncoders (for the boxing app)</li>
+            <li>Requests, lxml, numpy</li>
+          </ul>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      <h3 class="loud-subtitles">Roadmap</h3>
+      <p class="text-justify">While this website is very useful to me in its current form, I'm excited to see what else I can do with it to improve my quality of living, sharpen my skills, and flex my talent. Here's a short roadmap of what I want to accomplish here, which will be updated as I strike things off:</p>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <ul class="list-unstyled">
+            <li>A Nutrition App that pulls data from public APIs and manages kitchen invetory</li>
+            <li>A Workout tracker that intelligently builds future workouts to meet predefined goals</li>
+            <li>A trading journal that pulls data from financial APIs and send reminders to adjust positions</li>
+            <li>Family activity suggestions for weekends and vacations</li>
+          </ul>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% endblock content %}

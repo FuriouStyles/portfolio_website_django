@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class='content-section'>
+    <small class="text-muted">NOTE: You may create a sample account to check out the functinoality the website, but all unapproved accounts will be deleted within 48 hours</small>
+    <form method='POST'>
+      {% csrf_token %}
+      <fieldset class='form-group'>
+          <legend class='border-bottom mb-4'>Join Today</legend>
+          {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class='btn btn-outline-info' type='submit'>Sign Up</button>
+      </div>
+    </form>
+    <div class="border-top pt-3">
+      <small class="text-muted">
+        Already have an account? <a href="{% url 'login' %}" class='ml-2'>Sign In</a>
+      </small>
+    </div>
+  </div>
+{% endblock content %}

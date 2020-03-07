@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h1 class="loud-title text-center">Boxing Match Predictor</h1>
+<div class="card card-body shadow p-3 mb-5 bg-white rounded">
+  <h2 class="loud-subtitles text-center">And The Winner Is</h2>
+  <h4 class="loud-subtitles text-center">{{ winner }}</h4>
+  <p class="text-center">{{ winner }} has a <span class="font-weight-bold">{{ win_proba }}%</span> chance of winning the bout.</p>
+  <h6 class="text-center">Fight date: {{ date }}</h6>
+  <h6 class="text-center">Venue: {{ venue }}</h6>
+  <p class="text-center">The chances of {{ loser }} winning the bout are <span class="font-weight-bold">{{ loss_proba }}%</span>. The chances of a draw are <span class="font-weight-bold">{{ draw_proba }}%.</span></p>
+</div>
+<div class="card card-body shadow p-3 mb-5 bg-white rounded">
+  <h3 class="loud-subtitles">Insights</h3>
+  <p class="text-justify">Sometimes machine learning programs and their algorithms are a black box, meaning it's extremely difficult to tell for sure what's going on inside. The model was built using XGBoost, which stands for eXtreme Gradient Boosting. There are stacks of articles on what gradient boosting is and how it works, so I won't dive into it here, but a pretty solid rundown of gradient boosted trees can be found on the XGBoost documentation <a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html">here</a>. When searching for insights, what specifically makes this model make this prediction?</p>
+  <h4 class="loud-subtitles">Accuracy</h4>
+  <p class="text-justify">When considering predictive models of any kind, it's important to consider how accurate that model is against data it hasn't seen before. We do this by holding out a subset of our boxing dataset before we train our model, making a prediction on that hold out dataset using our trained model, and comparing the predicted results to the actual results. Simple math can give us a prediction accuracy for all classes (68%), and precision for wins (72%). These will change by a point or so every time the hold out set is tested.</p>
+  <img src="/static/sns_classification_accuracy_3.png" class="img-responsive mx-auto">
+  <p class="text-justify">For reference, professional sports gamblers would be extremely good at their job if they achieved just 55% accuracy. 70% accuracy in sport betting is considered to be 1 in a trillion.</p>
+  <h4 class="loud-subtitles">Feature Importances</h4>
+  <p class="text-justify">There is ample discussion on what makes a great fighter and what determines the outcome of a fight between two equally matched opponents. This graphic below shows us exactly which features are most important for predicting an outcome, and boxing heads may be very surprised by what the model feels are the most important factors when determining a fight outcome. For example, it's generally thought that southpaws have an advantage over orthodox fighters, but the model has determined that this isn't very important at all. In fact, the most important feature is the number of years a fighter is active. As Bernard Hopkins and others have demonstrated before, age is a relatively arbitrary factor in the model's weigting. This feature importances graphic was made using the Eli5 library.</p>
+  <img src="/static/fight_feature_importances_eli5.png" class="img-responsive mx-auto">
+  <h5 class="text-center">Features Not Included</h5>
+  <p class="text-justify">It's important to note that the dataset itself was scraped from BoxRec using BeautifulSoup and Pandas, and not provided directly in a structured, tabular way. Real world data can sometimes be messy, hence the specific requirements of input formats on the long form. It's for this reason that some features weren't included in the model. The results of each opponents last five fights, each fighter's records at the time of the fight, and knockout ratios were not included. As well, not every fight for every fighter is included, and not every fighter's profile was acquired but may have been included in the bout sheets of other fighters. The development roadmap for this project includes fixing these and other items.</p>
+</div>
+{% endblock content %}

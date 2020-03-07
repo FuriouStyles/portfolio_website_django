@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <h1 class="loud-title text-center">Boxing Match Predictor</h1>
+  <h3 class="loud-subtitles text-center">Long Form</h3>
+  <p class="text-justify">Use this form to predict which fighter will win! This model was build using data from <a href="www.boxrec.com">BoxRec.com</a> to build an XGBoost model. Currently this model can predict the outcome of a boxing match between any two professional boxers with 73% accuracy. <span class="font-weight-bold">For the most accurate results, please use the format indicated on the form as this is the format in which the model was trained.</span></p>
+  <p class="text-center"><a class="btn about-btn" href="https://medium.com/@stephenplainte/the-sweet-data-science-a260be7bf471">Learn More About This Model</a></p>
+  <div class="content-section">
+    <form method="GET">
+      {% csrf_token %}
+      <fieldset class="form-group row">
+        <legend class="border-bottom mb-4">Make A Fight Prediction</legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group row">
+        <button class="btn btn-outline-info" type="submit">Predict</button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
