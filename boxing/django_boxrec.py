@@ -10,6 +10,10 @@ ips = []
 proxy_pool = cycle(ips)
 
 def get_proxy_list():
+    """Gets a list of proxing mby 1. making a request to us-proxy.org,
+    2. scraping that table using BeautifulSoup,
+    3, looping through the table to find IPs and their Ports, and
+    4. returning a list of proxies"""
     head = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'}
     r = requests.get('https://www.us-proxy.org/', headers=head).content
     soup = bs(r, features='lxml')
