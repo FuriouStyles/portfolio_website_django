@@ -10,14 +10,13 @@ import boxing.django_boxrec as dbr
 from django.contrib import messages
 
 
-model_filename = 'boxing/static/xgboost_boxing_model_2.sav'
-encoder_filename = 'boxing/static/encoder_pipeline (1).sav'
-loaded_model = pickle.load(open(model_filename, 'rb'))
-loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
+# model_filename = 'boxing/static/xgboost_boxing_model_2.sav'
+# encoder_filename = 'boxing/static/encoder_pipeline (1).sav'
 
 
 def boxing(request):
     if request.method == 'GET':
+
         form = PredictBoutURL(request.GET or None)
         if form.is_valid():
             try:
@@ -64,6 +63,9 @@ def boxing(request):
                     'blue_years_active': blue['years_active'].iloc[0]
                     },
                     index=[0])
+
+                loaded_model = pickle.load(open(model_filename, 'rb'))
+                loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
 
                 df_encoded = loaded_encoder.transform(df)
 
@@ -180,6 +182,9 @@ def boxing_long_form(request):
                 'blue_years_active': blue_years_active
                 },
                 index=[0])
+
+            loaded_model = pickle.load(open(model_filename, 'rb'))
+            loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
 
             df_encoded = loaded_encoder.transform(df)
 
