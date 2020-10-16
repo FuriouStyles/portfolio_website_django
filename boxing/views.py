@@ -182,7 +182,7 @@ def boxing_long_form(request):
                 'blue_years_active': blue_years_active
                 },
                 index=[0])
-
+            global model_filename
             loaded_model = pickle.load(open(model_filename, 'rb'))
             loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
 
