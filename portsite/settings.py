@@ -25,8 +25,7 @@ SECRET_KEY = '6x(!g*0oh66qnou^1!yy@$ifj5p0uvm1$^$*4bv98c#=56ow+u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['.plaintecompany.com', '127.0.0.1']
 
 # Application definition
 
@@ -144,3 +143,5 @@ CKEDITOR_CONFIGS = {
 LOGIN_REDIRECT_URL = 'homepage'
 
 LOGIN_URL = 'login'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
