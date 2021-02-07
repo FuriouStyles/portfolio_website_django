@@ -10,8 +10,8 @@ import boxing.django_boxrec as dbr
 from django.contrib import messages
 
 
-# model_filename = 'boxing/static/xgboost_boxing_model_2.sav'
-# encoder_filename = 'boxing/static/encoder_pipeline (1).sav'
+model_filename = 'boxing/static/xgboost_boxing_model_dumped.sav'
+encoder_filename = 'boxing/static/encoder_pipeline (1).sav'
 
 
 def boxing(request):
@@ -63,8 +63,8 @@ def boxing(request):
                     'blue_years_active': blue['years_active'].iloc[0]
                     },
                     index=[0])
-
-                loaded_model = pickle.load(open(model_filename, 'rb'))
+                xgb = XGBClassifier()
+                loaded_model = xgb.load(model_filename)
                 loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
 
                 df_encoded = loaded_encoder.transform(df)
@@ -183,6 +183,8 @@ def boxing_long_form(request):
                 },
                 index=[0])
             global model_filename
+            # xgb = XGBClassifier()
+            # loaded_model = xgb.load_model(model_filename)
             loaded_model = pickle.load(open(model_filename, 'rb'))
             loaded_encoder = pickle.load(open(encoder_filename, 'rb'))
 

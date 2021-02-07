@@ -8,11 +8,11 @@
   <div class="content-section">
     <form method="GET">
       {% csrf_token %}
-      <fieldset class="form-group row">
+      <fieldset class="form-group">
         <legend class="border-bottom mb-4">Make A Fight Prediction</legend>
         {{ form|crispy }}
       </fieldset>
-      <div class="form-group row">
+      <div class="form-group">
         <button class="btn btn-outline-info" type="submit" data-toggle="modal" data-target="#mcgregor-modal">Predict</button>
       </div>
     </form>
