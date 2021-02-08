@@ -1,4 +1,4 @@
-
+.aws-elastic-beanstalk-cli-setup/*
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
