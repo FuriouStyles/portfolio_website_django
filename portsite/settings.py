@@ -25,12 +25,7 @@ SECRET_KEY = '6x(!g*0oh66qnou^1!yy@$ifj5p0uvm1$^$*4bv98c#=56ow+u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-# ALLOWED_HOSTS = ['.plaintecompany.com', '127.0.0.1:8000']
-ALLOWED_HOSTS = ['*']
-=======
 ALLOWED_HOSTS = ['.plaintecompany.com', '127.0.0.1']
->>>>>>> master
 
 # Application definition
 
