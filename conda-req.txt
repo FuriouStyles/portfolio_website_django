@@ -9,7 +9,7 @@ django-js-asset==1.2.2
 django==3.0.4
 djangorestframework==3.11.0
 idna==2.9
-joblib==0.14.1
+joblib==1.2.0
 lxml==4.5.0
 numpy==1.18.1
 pandas==1.0.1
