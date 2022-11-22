@@ -20,7 +20,7 @@ numpy==1.18.1
 olefile==0.46
 pandas==1.0.1
 patsy==0.5.1
-Pillow==7.0.0
+Pillow==9.3.0
 pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
 pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
 PySocks==1.7.1
